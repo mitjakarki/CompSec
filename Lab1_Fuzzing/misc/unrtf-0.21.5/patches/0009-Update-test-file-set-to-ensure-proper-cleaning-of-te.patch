@@ -1,0 +1,120 @@
+From: Willi Mann <willi@wm1.at>
+Date: Wed, 26 Dec 2012 10:38:56 +0100
+Subject: Update test file set to ensure proper cleaning of tests dir
+
+---
+ tests/Makefile.am |   80 ++++++++++++++++++++++++++++++++---------------------
+ 1 file changed, 49 insertions(+), 31 deletions(-)
+
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index 4950e05..768a6d7 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -2,58 +2,76 @@
+ TESTS = test_html.sh
+ 
+ # the data set for the tests
+-testdata = Greek1.rtf Greek2.rtf  \
++testdata = accents.rtf \
+ 	ascii_decimal.rtf \
+ 	backslash.rtf \
++	body.rtf \
+ 	borders_shading.rtf \
+ 	braces.rtf \
+ 	character_formatting.rtf \
+ 	chars.rtf \
+ 	columns.rtf \
++	cp1251-russian-alphabet.rtf \
+ 	font_size.rtf \
+ 	font_styles.rtf \
++	Greek1.rtf \
++	Greek2.rtf \
+ 	lists.rtf \
+ 	paragraph_formatting.rtf \
++	pict.rtf \
+ 	symbol.rtf \
+ 	text_color.rtf \
+ 	text_formatting.rtf \
++	Turkish.rtf \
+ 	unicode4.rtf
+ 
+ # the result set for the html test
+-testresults_html = Greek1.rtf.html Greek2.rtf.html  \
++testresults_html = accents.rtf.html \
+ 	ascii_decimal.rtf.html \
+-        backslash.rtf.html \
+-        borders_shading.rtf.html \
+-        braces.rtf.html \
+-        character_formatting.rtf.html \
+-        chars.rtf.html \
+-        columns.rtf.html \
+-        font_size.rtf.html \
+-        font_styles.rtf.html \
+-        lists.rtf.html \
+-        paragraph_formatting.rtf.html \
+-        symbol.rtf.html \
+-        text_color.rtf.html \
+-        text_formatting.rtf.html \
+-        unicode4.rtf.html
++	backslash.rtf.html \
++	body.rtf.html \
++	borders_shading.rtf.html \
++	braces.rtf.html \
++	character_formatting.rtf.html \
++	chars.rtf.html \
++	columns.rtf.html \
++	cp1251-russian-alphabet.rtf.html \
++	font_size.rtf.html \
++	font_styles.rtf.html \
++	Greek1.rtf.html \
++	Greek2.rtf.html \
++	lists.rtf.html \
++	paragraph_formatting.rtf.html \
++	pict.rtf.html \
++	symbol.rtf.html \
++	text_color.rtf.html \
++	text_formatting.rtf.html \
++	Turkish.rtf.html \
++	unicode4.rtf.html
+ 
+ # the result set for the latex test
+-testresults_tex = Greek1.rtf.tex Greek2.rtf.tex  \
++testresults_tex = accents.rtf.tex \
+ 	ascii_decimal.rtf.tex \
+-        backslash.rtf.tex \
+-        borders_shading.rtf.tex \
+-        braces.rtf.tex \
+-        character_formatting.rtf.tex \
+-        chars.rtf.tex \
+-        columns.rtf.tex \
+-        font_size.rtf.tex \
+-        font_styles.rtf.tex \
+-        lists.rtf.tex \
+-        paragraph_formatting.rtf.tex \
+-        symbol.rtf.tex \
+-        text_color.rtf.tex \
+-        text_formatting.rtf.tex \
+-        unicode4.rtf.tex
++	backslash.rtf.tex \
++	body.rtf.tex \
++	borders_shading.rtf.tex \
++	braces.rtf.tex \
++	character_formatting.rtf.tex \
++	chars.rtf.tex \
++	columns.rtf.tex \
++	cp1251-russian-alphabet.rtf.tex \
++	font_size.rtf.tex \
++	font_styles.rtf.tex \
++	Greek1.rtf.tex \
++	Greek2.rtf.tex \
++	lists.rtf.tex \
++	paragraph_formatting.rtf.tex \
++	pict.rtf.tex \
++	symbol.rtf.tex \
++	text_color.rtf.tex \
++	text_formatting.rtf.tex \
++	Turkish.rtf.tex \
++	unicode4.rtf.tex
+ 
+ # need to wipe out test results on make clean
+ CLEANFILES = $(testresults_html) $(testresults_tex) pict001.wmf

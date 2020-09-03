@@ -1,0 +1,32 @@
+From: Willi Mann <willi@wm1.at>
+Date: Wed, 26 Dec 2012 10:03:47 +0100
+Subject: Get fully rid of hardcoded local/lib paths
+
+---
+ src/my_iconv.h |    2 +-
+ src/path.h     |    2 +-
+ 2 files changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/my_iconv.h b/src/my_iconv.h
+index 1ca8d26..ac42102 100644
+--- a/src/my_iconv.h
++++ b/src/my_iconv.h
+@@ -10,7 +10,7 @@
+ #define HAVE_ICONV_H
+ #endif
+ 
+-#define CHARMAP_DIR "/usr/local/lib/unrtf/charmaps/"
++#define CHARMAP_DIR PKGDATADIR "/charmaps/"
+ #define char_table_size 256
+ 
+ typedef struct
+diff --git a/src/path.h b/src/path.h
+index 68a2167..f6c16d0 100644
+--- a/src/path.h
++++ b/src/path.h
+@@ -1,4 +1,4 @@
+-#define DEFAULT_UNRTF_SEARCH_PATH	"/usr/local/lib/unrtf/"
++#define DEFAULT_UNRTF_SEARCH_PATH	PKGDATADIR "/"
+ 
+ char	*search_path;
+ int	n_path_dirs;

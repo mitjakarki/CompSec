@@ -1,0 +1,22 @@
+From: Willi Mann <willi@wm1.at>
+Date: Sun, 23 Dec 2012 17:35:41 +0100
+Subject: Fix manpage section specification
+
+This fixes a lintian warning
+---
+ doc/unrtf.1 |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/doc/unrtf.1 b/doc/unrtf.1
+index 5623c9c..9970c49 100644
+--- a/doc/unrtf.1
++++ b/doc/unrtf.1
+@@ -2,7 +2,7 @@
+ .\"
+ .\" Permission is granted to redistribute this file with UnRTF.
+ .\"
+-.TH UNRTF "GNU UnRTF 0.21.0"
++.TH UNRTF 1 "GNU UnRTF 0.21.0"
+ .SH NAME
+ UnRTF \- converts document in RTF format to other formats
+ .SH SYNOPSIS

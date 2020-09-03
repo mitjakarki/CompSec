@@ -1,0 +1,21 @@
+From: Willi Mann <willi@wm1.at>
+Date: Wed, 26 Dec 2012 10:12:07 +0100
+Subject: Ensure that the picture extracted during testing is also cleaned
+
+---
+ tests/Makefile.am |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/Makefile.am b/tests/Makefile.am
+index ea17293..4950e05 100644
+--- a/tests/Makefile.am
++++ b/tests/Makefile.am
+@@ -56,7 +56,7 @@ testresults_tex = Greek1.rtf.tex Greek2.rtf.tex  \
+         unicode4.rtf.tex
+ 
+ # need to wipe out test results on make clean
+-CLEANFILES = $(testresults_html) $(testresults_tex)
++CLEANFILES = $(testresults_html) $(testresults_tex) pict001.wmf
+ 
+ # add the test scripts and the test data to the distributed files
+ EXTRA_DIST = $(TESTS) $(testdata)

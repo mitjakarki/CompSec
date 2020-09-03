@@ -1,0 +1,59 @@
+0.21.3:
+      - added '--quiet' flag which suppresses leading comments in output
+      - default directory for config files is now /usr/local/share/unrtf
+	and this can be changed when configure is run at compilation time
+      - subdirs in config directory eliminated making it easier for a user
+	to supply their own in a single directory specified with -P
+      - code for two hex characters introduced in 0.21.2 completely replaced
+	by more generalised string handling.
+      - major improvements to codepage handling
+      - major improvements in unicode handling
+      - latex config file improved.  Some Greek characters output properly.
+      - troff_mm config file improved such that this option is now useful
+0.21.2:
+      - added feof() calls to fgets() and fgetchar() instances so end-of
+        file is correctly determined under AIX
+      - supplemented code to handle special characters specified with
+        two hex characters (e.g. \'81\'83) as output by some RTF
+	writers.  This code is experimental, and uses the SHIFT_JIS
+	codepage for conversion.
+      - definitions in html.config changed to ensure values of markup variables
+        are enclosed in double quotes, e.g. size="3" instead of size=3.  This
+	is a first step towards supporting production of XHTML.
+0.21.1:
+      - fixed strings in unicode_to_string() (unicode.c) to be null
+	terminated instead of newline terminated.  This prevents spurious
+	newline output after characters in Symbol font.  It also overcomes a
+	fault whereby characters in the symbol font were being output as
+	unicode instead of the desired entities defined in the output
+	specification.
+      - suppressed output of <font face="Symbol"> as this is wrong if
+	characters are changed to unicode or entities
+      - changed path set with -P to be directory containing the output
+	charmaps specifications, and changed the default path to
+	/usr/local/lib/unrtf for the same reason.  This makes it possible
+	to set a different default path, useful for example if one cannot
+	install files in /usr/local/lib.
+      - dropped "outputs" and "charmaps" sub-directories in the configuration
+        directory.  Output configuration files are now named "html.conf",
+	"text.conf" etc. and the symbol font charmap file is "SYMBOL.charmap".
+      - charmap specifications now sought in the search path
+      - compensate for RTF with unicodes specified as negative numbers,
+	possibly due to overflow on a 16bit machine?
+      - changed processing of --html (etc.) args so that "-t html" and
+	"--html" are equivalent, i.e. both subject to search path set with
+	"-P"
+0.21.3:
+      - major changes to code page support and UTF handling
+      - improved LaTeX output
+      - /usr/local/lib no longer hard wired - set by configure
+0.21.4:
+      - ignore embedded picture which cannot be rendered
+      - allow unnested bold/italic to be interpreted as expected.  Such input
+      	may be outside the RTF spec, but can be created by TextEdit.  The
+	change has been limited to the bold command (cmd_b in convert.c)
+	on an experimental basis.  If no bugs appear it could be more generally
+	applied.
+0.21.5:
+      - improved code for the unnested case and extended to more RTF commands
+

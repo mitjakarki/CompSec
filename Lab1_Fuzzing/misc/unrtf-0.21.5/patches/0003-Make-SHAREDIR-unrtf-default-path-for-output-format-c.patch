@@ -1,0 +1,21 @@
+From: Willi Mann <willi@wm1.at>
+Date: Sun, 23 Dec 2012 21:42:19 +0100
+Subject: Make $SHAREDIR/unrtf default path for output format configuration
+
+---
+ src/main.h |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/main.h b/src/main.h
+index 4230d47..a84839b 100644
+--- a/src/main.h
++++ b/src/main.h
+@@ -47,7 +47,7 @@ extern int no_remap_mode;
+ #include "output.h"
+ #endif
+ 
+-#define CONFIG_DIR "/usr/local/lib/unrtf/"
++#define CONFIG_DIR PKGDATADIR "/"
+ #define DEFAULT_OUTPUT "html"
+ 
+ extern OutputPersonality *op;

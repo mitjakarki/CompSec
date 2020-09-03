@@ -65,15 +65,21 @@ Grade 1 can be acquired by doing lecture questionnaires from the corresponding l
 **A)** Make yourself familiar with [Radamsa](https://gitlab.com/akihe/radamsa). Try it out in a terminal and print 10 malformed samples of ```Fuzztest 1337``` using *echo*.
 
 **Provide the command line you used to do this.**
+echo "Fuzztest 1337"|radamsa -n 10
 
 Radamsa can also handle various types of files. Next, you have to generate a bunch of *.txt* test samples for later usage. 
 
 **B)** Create a *.txt* file that contains only the text ```12 EF``` and nothing more. Use Radamsa to generate 100 fuzzed samples of the file that are named ```fuzz1.txt```, ```fuzz2.txt```, ```fuzz3.txt```... etc. You should create a separate folder for the samples.
 
 **Provide the content of 2 different samples that radamsa created**
+$ cat fuzz1.txt fuzz2.txt 
+170141183460469231731687303715885745527F 7E
+-3276927692541231800394�1231800313023180042 E�
+F �
+��FE
 
 **Command line used to create the samples**
-
+radamsa -o fuzz%n.txt -n 100 sorsa.txt
 ---
 
 ## Task 2 
@@ -83,10 +89,13 @@ Radamsa can also handle various types of files. Next, you have to generate a bun
 This repository contains an example C program called [example.c](misc/example.c). Your task is to analyze it using [AddressSanitizer (ASan)](https://github.com/google/sanitizers/wiki/AddressSanitizer). Compile the code with ```clang``` and appropriate [sanitizer flags](https://github.com/google/sanitizers/wiki/AddressSanitizerFlags#compiler-flags). Run the compiled program and analyze what happens.
 
 **Command line used to compile the program**
+clang -fsanitize=address example.c 
 
 **Screenshot of the result after running the program**
+![screenshot](https://github.com/mitjakarki/CompSec/Lab1_Fuzzing/task2_output.png?raw=true)
 
 **What is the error and what is causing it in this program?**
+LeakSanitizer reports a memory leak. The memory allocated by malloc() is not freed before exit.
 
 ---
 ### B) Fuzzing with AFL
@@ -135,12 +144,16 @@ So, here's what you need to do:
 7. Run the fuzzer until you get at least 50 unique crashes and observe the status window to see what is happening. A good description of the status window can be found [here](http://lcamtuf.coredump.cx/afl/status_screen.txt).
 
 **Command line used to configure unrtf**
+/configure CC="/usr/bin/afl-gcc" --prefix=$HOME/unrtf
 
 **Command line used to run AFL**
+afl-fuzz -i task2_input -o task2_output ~/unrtf/bin/unrtf
 
 **Screenshot of the AFL status screen after stopping the fuzzer**
+![screenshot](https://github.com/mitjakarki/CompSec/Lab1_Fuzzing/task2b_output.png?raw=true)
 
 **What do you think are the most significant pieces of information on the status screen? Why are they important?**
+Total crashes and unique crashes and cycles done. Crashes are important to know when developing a program. The man page recommends running at least a single cycle so the cycle count is also important.
 
 ---
 ### C) Reproducing crashes with Valgrind
@@ -156,8 +169,10 @@ Run UnRTF with this file under Valgrind:
 __Hint__: Make sure that you are actually running the UnRTF with a crash file! If you get "Error: Cannot open input file" before Valgrind's actual memory analysis output, you are trying to run the program without any input. See the Valgrind [documentation](http://valgrind.org/docs/manual/quick-start.html) for help.
 
 **Take a screenshot of the Valgrind result after running the program**
+![screenshot](https://github.com/mitjakarki/CompSec/Lab1_Fuzzing/task2c_output.png?raw=true)
 
 **What can you tell about the crash?**
+Call stack where the crash happened. "Address 0x11 is not stack'd, malloc'd or (recently) free'd". Super useful for the developer!
 
 ---
 

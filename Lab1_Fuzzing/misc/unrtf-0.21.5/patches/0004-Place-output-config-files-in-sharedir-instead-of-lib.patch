@@ -1,0 +1,16 @@
+From: Willi Mann <willi@wm1.at>
+Date: Sun, 23 Dec 2012 21:44:58 +0100
+Subject: Place output config files in sharedir instead of libdir
+
+---
+ outputs/Makefile.am |    2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/outputs/Makefile.am b/outputs/Makefile.am
+index 055b75e..3ddef1f 100644
+--- a/outputs/Makefile.am
++++ b/outputs/Makefile.am
+@@ -1,2 +1,2 @@
+-outputsdir = ${libdir}/${PACKAGE}
++outputsdir = ${pkgdatadir}
+ dist_outputs_DATA = html.conf latex.conf rtf.conf text.conf vt.conf
