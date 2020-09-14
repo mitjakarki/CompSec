@@ -199,6 +199,8 @@ Run your program with the previously generated 100 test cases. A simple shell sc
 
 **Provide the C-code of your program**
 
+Find code [here](https://github.com/mitjakarki/CompSec/blob/master/Lab1_Fuzzing/misc/filereader.c)
+
 **Take a screenshot of the AddressSanitizer results after running your program with the test cases. Show at least 3 ASAN outputs.**
 
 ---
