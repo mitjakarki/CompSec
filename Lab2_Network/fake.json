@@ -1,0 +1,2 @@
+{"email":"<iframe src='javascript:alert(`xss`)'>","password":"testi","passwordRepeat":"testi","securityQuestion":{"id":2,"question":"Mother's maiden name?","createdAt":"2020-09-15T08:45:33.342Z","updatedAt":"2020-09-15T08:45:33.342Z"},"securityAnswer":"testi"}
+

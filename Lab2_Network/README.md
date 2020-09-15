@@ -166,9 +166,15 @@ The GET request is sent to http://localhost:3000/rest/products/search?q=. Try di
 
 __What did you use as the search argument to cause an error?__
 
+'"
+
 __Why did it cause an error?__
+
+There should be an even number of quotes in a query. Now the query is incomplete and the server can't handle it properly.
  
 __Paste here the command that the SQL server attempts to execute and replace the part(s) taken from the search field with the text "SEARCHRESULT".__ 
+
+SELECT * FROM Products WHERE ((name LIKE '%SEARCHRESULT\SEARCHRESULT%' OR description LIKE '%SEARCHRESULT\SEARCHRESULT%') AND deletedAt IS NULL) ORDER BY name
 
 ---
 
@@ -183,10 +189,15 @@ Examine the SQL-query that the server returned in the last part. How does this q
 
 __How are the items "deleted"?__
 
+They aren't really deleted, only marked as deleted in the database if the field deletedAt is non-null. The first query only excludes items marked as deleted.
+
 __How did you make the server to return all the items?__
  
+') )--"
 
 __Explain shortly the logic behind your attack. Why does it work?__
+
+The comment char "--" marks the rest of the query as a comment and will not be excecuted. In this case all the products will be returned regardless of the state of deletedAt field.
 
 ---
 
@@ -198,10 +209,16 @@ Inject some SQL into the login fields, [bypass the login](https://www.acunetix.c
 
 __What command(s) did you use?__
 
+Login: ' OR 1=1 --
+Password: "
+
 __Why it is working/what is happening?__
+
+The rest of the query is ignored and password is not required. First account is chosen from list.
 
 __What user did you login as?__
 
+admin@juice-sh.op
 
 ---
 ### Inspecting the client resources
@@ -217,6 +234,11 @@ Firefox's developer tools has debugger that shows sources. Try to find the path 
 
 __How did you find the path?__
 
+Search "scoreboard" from main.js
+--> found references such as this.scoreBoardTablesExpanded=localStorage.getItem("scoreBoardTablesExpanded")
+
+So the scoreboard resides in localStorage in key:value-pairs
+
 ---
 
 **Administration panel**
@@ -229,6 +251,10 @@ Check task 'Scoreboard'. You have to be logged in as the admin to access the pag
 </details>
 
 __What is the administration panel's URL?__
+
+http://localhost:3000/#/administration
+
+This was easy enough to just guess.
 
 ---
 ### XSS attacks
@@ -244,6 +270,9 @@ Next, we attempt some cross-site scripting attacks. While you are logged in as a
 Attack on the "Order ID" is an [reflected XSS attack](https://www.owasp.org/index.php/Cross-site_Scripting_(XSS)#Reflected_XSS_Attacks) and the attack on the searchfield is [DOM based XSS](https://www.owasp.org/index.php/DOM_Based_XSS).
 
 __What is the difference between these two types of attacks?__
+
+In reflected XSS attack, the malicious script is injected into and then stored in the original and legitimate website.
+In DOM XSS the website is not altered but the client side DOM env is.
 
 ---
 
@@ -274,6 +303,8 @@ After this, log in as the administrator and go to the administration panel. You 
 
 __How can you protect your applications against XSS attacks?__
 
+Input sanitization and validation on user and server side.
+
 ---
 
 ## Task 2 
@@ -296,7 +327,16 @@ You can guess this if you want to, but the column amount can also be found from 
 
 __What SQL command did you use?__
 
+Email: 'UNION SELECT email, password, "1", "2", "3", "4", "5", "6" FROM Users--
+Password: "
+
 __Explain shortly the logic behind your attack. Why and how does it work?__
+
+I figured that the Product table has 8 columns. However no matter the amount of columns queried in the login form, I could not get a working output. Only
+```shell
+message: SQLITE_ERROR: SELECTs to the left and right of UNION do not have the same number of result columns 
+```
+all the time except when 12 columns were requested, the website asked the user for 2FA token.
 
 ---
 
