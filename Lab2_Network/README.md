@@ -369,7 +369,7 @@ If your modified HTML doesn't show up on the site, try to restart apache2.
 
 #### Returns
 
-* index.html
+[index.html](https://github.com/mitjakarki/CompSec/blob/master/Lab2_Network/index.html)
 
 ---
 **Brute forcing**
