@@ -383,9 +383,14 @@ You can use any tools you find online. If you want to, you can code your own mut
 
 #### Returns
 
-* Wordlist
-* Any code you created.
+* [Wordlist](https://github.com/mitjakarki/CompSec/blob/master/Lab2_Network/task2_bruteforcer/wordlist.txt)
+* Any code you created.[Primitive and random mutator.py](https://github.com/mitjakarki/CompSec/blob/master/Lab2_Network/task2_bruteforcer/mutator.py)
 * Detailed description on how you created the wordlist and how you did the brute force attack.
+
+I wanted to create the wordlist with my own means so I wrote mutator.py to do the job. It asks the user for the number of mutations and creates random mutations (not iterative) of the word.
+Just to be on the sure side, I created a million mut4Ti0n5 of "vaapukkamehu", one per line to wordlist.txt.
+The brute forcing was done using OWASP ZAP according to the instructions and took about 20 minutes to complete with the 1M word list.
+However, either I or Muumipappa had had too much of vaapukkamehu -- the server responded with code 200 on every POST request.
 
 <details>
 <summary>Hint</summary>
